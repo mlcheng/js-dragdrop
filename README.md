@@ -11,7 +11,7 @@ To setup a drop target, simply write
 iqwerty.dragdrop.DragDrop("drop");
 ```
 
-This will find the HTML element with an ID of `drop` and allow files to be dropped there. When files are dropped, it is useful to have a callback so you can process the files
+This will find the HTML element with an ID of `drop` and allow files to be dropped there. When files are dropped, it is useful to set a callback so you can process the files
 
 ```javascript
 iqwerty.dragdrop.DragDrop("drop").setOnDropCallback(function(files) {
@@ -41,6 +41,8 @@ iqwerty.dragdrop.DragDrop("drop").setOnDropCallback(function(files) {
 });
 ```
 
+More information on how the `http` library works can be found [here](https://github.com/mlcheng/js-http).
+
 ### Styling
 The drop target can be customized in your own CSS file. For example,
 
@@ -52,7 +54,7 @@ The drop target can be customized in your own CSS file. For example,
 }
 ```
 
-When dragging a file over the target, the class `iqwerty_dragdrop_over' will be applied to the target. You may then style the target as follows
+When dragging a file over the target, the class `iqwerty_dragdrop_over` will be applied to the target. You may then style the target as follows
 
 ```css
 #drop.iqwerty_dragdrop_over {
