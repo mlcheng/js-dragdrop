@@ -2,7 +2,7 @@
 
 With this drag and drop library, it is easy to setup a drop target with just one line of JavaScript. With a drop target, users can drag files from their computer onto your webpage.
 
-A demo is available on my [playground](http://www.michaelcheng.us/playground/lib-js/dragdrop/).
+A demo is available on my [playground](https://www.michaelcheng.us/playground/lib-js/dragdrop/).
 
 ## Usage
 To setup a drop target, simply write
