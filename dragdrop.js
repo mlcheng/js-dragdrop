@@ -9,7 +9,7 @@
 
 ***********************************************/
 
-"use strict";
+'use strict';
 
 var iqwerty = iqwerty || {};
 
@@ -20,7 +20,7 @@ iqwerty.dragdrop = (function() {
 	 */
 	
 	// The class applied to the target when the cursor is dragged over
-	var CLASS_DROP_OVER = "iqwerty_dragdrop_over";
+	var CLASS_DROP_OVER = 'iqwerty_dragdrop_over';
 
 
 
@@ -32,7 +32,7 @@ iqwerty.dragdrop = (function() {
 	 */
 	function DragDrop(target) {
 		if(!(window.File && window.FileList && window.FileReader)) {
-			console.log("File upload not supported");
+			console.log('File upload not supported');
 		}
 
 
@@ -41,15 +41,9 @@ iqwerty.dragdrop = (function() {
 		 * @type {Element}
 		 */
 		var _dropTarget = document.getElementById(target);
-		_dropTarget.addEventListener("dragover", onDragOver.bind(this));
-		_dropTarget.addEventListener("dragleave", onDragLeave.bind(this));
-		_dropTarget.addEventListener("drop", onDropHandler.bind(this));
-
-		/**
-		 * A list of files dropped
-		 * @type {Array}
-		 */
-		var _files = [];
+		_dropTarget.addEventListener('dragover', onDragOver.bind(this));
+		_dropTarget.addEventListener('dragleave', onDragLeave.bind(this));
+		_dropTarget.addEventListener('drop', onDropHandler.bind(this));
 
 		/**
 		 * The callback when files are dropped
@@ -63,7 +57,7 @@ iqwerty.dragdrop = (function() {
 		 */
 		function showTarget() {
 			_dropTarget.classList.add(CLASS_DROP_OVER);
-		};
+		}
 
 		/**
 		 * Return the drop target to its default state; used when user isn't dragging anymore
@@ -71,7 +65,7 @@ iqwerty.dragdrop = (function() {
 		 */
 		function hideTarget() {
 			_dropTarget.classList.remove(CLASS_DROP_OVER);
-		};
+		}
 
 		/**
 		 * Called when the user drags something over the target
@@ -81,7 +75,7 @@ iqwerty.dragdrop = (function() {
 			event.stopPropagation();
 			event.preventDefault();
 			showTarget();
-		};
+		}
 
 		/**
 		 * Called when the user leaves the target
@@ -91,7 +85,7 @@ iqwerty.dragdrop = (function() {
 			event.stopPropagation();
 			event.preventDefault();
 			hideTarget();
-		};
+		}
 
 		/**
 		 * Called when an object is dropped onto the drop target.
@@ -102,19 +96,16 @@ iqwerty.dragdrop = (function() {
 			onDragLeave(event);
 
 			var files = event.target.files || event.dataTransfer.files;
-			for(var i=0, file;file=files[i];i++) {
-				_files.push(file);
-			}
+			files = [].slice.call(files);
 
 			// call the user defined drop callback
-			if(typeof _onDropCallback === "function") {
-				_onDropCallback(_files);
-
-
-				// files are gone, clean up
-				_files = [];
+			if(typeof _onDropCallback === 'function') {
+				_onDropCallback(files);
 			}
-		};
+
+			// files are gone, clean up
+			files = null;
+		}
 
 		/**
 		 * Set the callback to be called when files are dropped
@@ -125,7 +116,7 @@ iqwerty.dragdrop = (function() {
 		};
 		
 		return this;
-	};
+	}
 
 
 	return {
