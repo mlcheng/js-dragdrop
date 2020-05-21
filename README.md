@@ -2,19 +2,20 @@
 
 With this drag and drop library, it is easy to setup a drop target with just one line of JavaScript. With a drop target, users can drag files from their computer onto your webpage.
 
-A demo is available on my [playground](https://www.michaelcheng.us/playground/lib-js/dragdrop/).
+A demo is available on my [playground](https://www.michaelcheng.us/lib-js/dragdrop/).
 
 ## Usage
 To setup a drop target, simply write
 
 ```javascript
-iqwerty.dragdrop.DragDrop("drop");
+const target = document.querySelector('#drop');
+iqwerty.dragdrop.setTarget(target);
 ```
 
 This will find the HTML element with an ID of `drop` and allow files to be dropped there. When files are dropped, it is useful to set a callback so you can process the files
 
 ```javascript
-iqwerty.dragdrop.DragDrop("drop").setOnDropCallback(function(files) {
+iqwerty.dragdrop.setTarget(target).setOnDropCallback((files) => {
 	console.log(files);
 });
 ```
@@ -25,17 +26,17 @@ The callback will receive one parameter: an array of the `File`s that were dropp
 Drag and drop is recommended to be used with the iQwerty [`http` library](https://github.com/mlcheng/js-http). Thus, the onDrop callback can be written as
 
 ```javascript
-iqwerty.dragdrop.DragDrop("drop").setOnDropCallback(function(files) {
-	files.forEach(function(file) { // upload each file in the array
-		$http("upload.php")
-			.progress(function(progress) { // set the progress callback
-				console.log("Upload progress " + Math.floor((progress.loaded/progress.total)*100) + "%");
+iqwerty.dragdrop.setTarget(target).setOnDropCallback((files) => {
+	files.forEach((file) => { // Upload each file in the array
+		$http('upload.php')
+			.progress(function(progress) { // Set the progress callback
+				console.log('Upload progress ' + Math.floor((progress.loaded/progress.total)*100) + '%');
 			})
-			.success(function() { // notify when the upload is successful
-				console.log("Upload successful!")
+			.success(function() { // Notify when the upload is successful
+				console.log('Upload successful!');
 			})
 			.post({
-				"file": file //set the 'file' parameter to the current file and POST it to the server
+				file // Set the 'file' parameter to the current file and POST it to the server
 			});
 	});
 });
@@ -54,10 +55,10 @@ The drop target can be customized in your own CSS file. For example,
 }
 ```
 
-When dragging a file over the target, the class `iqwerty_dragdrop_over` will be applied to the target. You may then style the target as follows
+When dragging a file over the target, the class `iqwerty-dragdrop-over` will be applied to the target. You may then style the target as follows
 
 ```css
-#drop.iqwerty_dragdrop_over {
+#drop.iqwerty-dragdrop-over {
 	background: blue;
 }
 ```

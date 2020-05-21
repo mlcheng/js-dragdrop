@@ -11,6 +11,6 @@
 ***********************************************/
 
 if(isset($_FILES['file'])) {
-	echo "Server received the file: " . $_FILES['file']['name'] . ". Unfortunately no upload will really be done";
+	echo 'Server received the file: ' . $_FILES['file']['name'] . '. No upload will really be done.';
 }
 ?>
